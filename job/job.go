@@ -41,6 +41,10 @@ func CreateFromDHCP(mac net.HardwareAddr, giaddr net.IP, circuitID string) (Job,
 		start: time.Now(),
 	}
 
+	//TODO: can't ingest cacher data, can we construct a discovery without relying on cacher?
+	//d, err := packet.NewDiscovery("1234")
+	//d.AllowPXE = true
+
 	d, err := discoverHardwareFromDHCP(mac, giaddr, circuitID)
 	if err != nil {
 		return Job{}, errors.WithMessage(err, "discover from dhcp message")
